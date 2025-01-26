@@ -1,0 +1,38 @@
+<html>
+    <title>Calculador de Corrida</title>
+    <body>
+        <p>Informe a distância em KM: </p> <input id="inputDistancia"/>
+        <br/>
+        <p>Informe o tempo em minutos: </p> <input id="inputTempo"/>
+        <br/>
+        <br/>
+        <button onclick="calcular()">Calcular</button>
+    </body>
+    <script>
+        const inputDistancia = document.getElementById("inputDistancia");
+        const inputTempo = document.getElementById("inputTempo");
+        const taxaFixa = 1.2;
+
+        function isValido(distancia, tempo) {
+            if(distancia.length == 0 || tempo.length == 0) {
+                alert('Distância ou valor não informados');
+                return false;
+            }
+            return true;
+        }
+
+        function formatarRetorno(resultado) {
+            return 'R$$ ' + resultado.toFixed(2).replace('.', ',');
+        }
+
+        function calcular() {
+            const distancia = inputDistancia.value;
+            const tempo = inputTempo.value;
+            if (!isValido(distancia, tempo)) {
+                return;
+            }
+            const resultado = (distancia + tempo) * taxaFixa;
+            alert('Sua corrida sairá por ' + formatarRetorno(resultado));
+        }
+    </script>
+</html>
